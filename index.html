@@ -386,12 +386,25 @@
     */
     function sayYes() {
 
-      document.getElementById("questionCard").style.display = "none";
-      document.getElementById("celebration").style.display = "block";
+        // Send notification
+        fetch("https://formspree.io/f/xbgjzpyb", {
+            method: "POST",
+            headers: {
+            "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+            message: "SHE SAID YES! 🤍🥹",
+            response: "YES",
+            time: new Date().toLocaleString()
+            })
+        });
 
-      createConfetti();
+        // Show celebration
+        document.getElementById("questionCard").style.display = "none";
+        document.getElementById("celebration").style.display = "block";
 
-    }
+        createConfetti();
+        }
 
 
     /*
@@ -429,7 +442,7 @@
         }, 5000);
       }
     }
-
+   
   </script>
 
 </body>
