@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>A Little Question 💗</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background: linear-gradient(135deg, #fdfbf7, #f7f3eb, #fffdf8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      color: #5f584d;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 25px;
+      animation: floatUp linear infinite;
+      opacity: 0.7;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Main card */
+    .card {
+      width: min(90%, 550px);
+      padding: 45px 35px;
+      background: rgba(255, 253, 248, 0.94);
+      border-radius: 30px;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(120, 105, 85, 0.15);
+      backdrop-filter: blur(10px);
+      position: relative;
+      z-index: 10;
+      animation: appear 1s ease;
+    }
+
+    @keyframes appear {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .small-heart {
+      font-size: 50px;
+      animation: heartbeat 1.4s infinite;
+      margin-bottom: 15px;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.18);
+      }
+    }
+
+    h1 {
+      font-size: clamp(30px, 7vw, 48px);
+      margin-bottom: 18px;
+      color: #756b5d;
+    }
+
+    .intro {
+      font-size: 18px;
+      line-height: 1.7;
+      margin-bottom: 25px;
+    }
+
+    .message {
+      background: #f8f4ec;
+      border-radius: 20px;
+      border: 1px solid #e8e0d3;
+      padding: 20px;
+      margin: 20px 0 30px;
+      line-height: 1.7;
+      font-size: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .question {
+      font-size: 25px;
+      font-weight: bold;
+      color: #756b5d;
+      margin-bottom: 25px;
+    }
+
+    /* Buttons */
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      position: relative;
+      min-height: 55px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 30px;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.25s ease;
+      font-family: inherit;
+    }
+
+    #yesBtn {
+      background: #817667;
+      color: #fffdf8;
+      box-shadow: 0 8px 20px rgba(110, 95, 75, 0.25);
+    }
+
+    #yesBtn:hover {
+      transform: scale(1.08);
+      background: #6f6456;
+    }
+
+    #noBtn {
+      background: #ebe5da;
+      color: #756b5d;
+      position: relative;
+    }
+
+    #noBtn:hover {
+      transform: scale(0.95);
+    }
+
+    /* Celebration */
+    #celebration {
+      display: none;
+    }
+
+    #celebration h1 {
+      font-size: 45px;
+      color: #756b5d;
+    }
+
+    .big-heart {
+      font-size: 90px;
+      animation: heartbeat 1s infinite;
+      margin: 15px 0;
+    }
+
+    .celebrate-text {
+      font-size: 20px;
+      line-height: 1.7;
+    }
+
+    .sparkles {
+      font-size: 30px;
+      margin-top: 20px;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -20px;
+      animation: confettiFall 3s linear forwards;
+      z-index: 100;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+      }
+    }
+
+    /* Mobile */
+    @media (max-width: 500px) {
+      .card {
+        padding: 35px 22px;
+      }
+
+      .intro {
+        font-size: 16px;
+      }
+
+      .message {
+        font-size: 15px;
+      }
+
+      .question {
+        font-size: 21px;
+      }
+
+      button {
+        padding: 13px 24px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating hearts -->
+  <div class="heart" style="left: 5%; animation-duration: 8s;">💗</div>
+  <div class="heart" style="left: 15%; animation-duration: 11s; animation-delay: 2s;">💕</div>
+  <div class="heart" style="left: 28%; animation-duration: 9s; animation-delay: 4s;">💖</div>
+  <div class="heart" style="left: 45%; animation-duration: 12s; animation-delay: 1s;">💗</div>
+  <div class="heart" style="left: 62%; animation-duration: 10s; animation-delay: 3s;">💕</div>
+  <div class="heart" style="left: 78%; animation-duration: 9s; animation-delay: 5s;">💖</div>
+  <div class="heart" style="left: 92%; animation-duration: 13s;">💗</div>
+
+
+  <!-- Question Card -->
+  <div class="card" id="questionCard">
+
+    <div class="small-heart">🤍</div>
+
+    <h1>Hey, Fathi...</h1>
+
+    <p class="intro">
+      I have a little question for you.
+      And I figured asking you like this would be
+      a little more special. ❤️
+    </p>
+
+    <div class="message">
+      I know we’re miles apart, and we can’t always be there beside each other, but somehow you’ve still become such an important part of my life. 🥹
+
+      <br><br>
+
+      I love talking to you, spending time with you, and having you in my life..even from far away. 🤍
+
+      <br><br>
+
+      Soooo... I have one tiny question.
+    </div>
+
+    <div class="question">
+      Would you let me be your girlfriend? 🤍
+
+      
+    </div>
+
+    <div class="buttons">
+      <button id="yesBtn" onclick="sayYes()">
+        YES! 🤍
+      </button>
+
+      <button id="noBtn">
+        No 😭
+      </button>
+    </div>
+
+  </div>
+
+
+  <!-- Celebration Card -->
+  <div class="card" id="celebration">
+
+    <div class="big-heart">🤍</div>
+
+    <h1>YAYYYYY! 🥹🤍</h1>
+
+    <p class="celebrate-text">
+      You said yes!!!
+
+      <br><br>
+
+      So I guess I can officially call you my girlfriend now. 🌷
+
+      <br><br>
+
+      Even though we’re far apart, I’m really happy we get to have each other. 🤍
+      <br><br>
+      Here’s to all the calls, messages, late-night conversations, silly moments, and memories we’ll make together. ✨
+
+       <br><br>
+       Love you ❤️
+
+
+    
+    </p>
+
+    <div class="sparkles">
+        ✨ 🤍 ✨  
+    </div>
+
+  </div>
+
+
+  <script>
+
+    const noBtn = document.getElementById("noBtn");
+
+    /*
+      The No button moves when she tries
+      to click it.
+    */
+    noBtn.addEventListener("mouseover", moveNoButton);
+
+    noBtn.addEventListener("touchstart", moveNoButton);
+
+
+    function moveNoButton() {
+
+    const messageBox = document.querySelector(".message");
+
+    const padding = 20;
+
+    const boxWidth = messageBox.clientWidth;
+    const boxHeight = messageBox.clientHeight;
+
+    const buttonWidth = noBtn.offsetWidth;
+    const buttonHeight = noBtn.offsetHeight;
+
+    // Keep the button completely inside the message box
+    const maxX = boxWidth - buttonWidth - padding;
+    const maxY = boxHeight - buttonHeight - padding;
+
+    const x = padding + Math.random() * (maxX - padding);
+    const y = padding + Math.random() * (maxY - padding);
+
+    // Position relative to the message box
+    noBtn.style.position = "absolute";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+    noBtn.style.transform = "none";
+}
+
+    /*
+      What happens when she clicks YES
+    */
+    function sayYes() {
+
+      document.getElementById("questionCard").style.display = "none";
+      document.getElementById("celebration").style.display = "block";
+
+      createConfetti();
+
+    }
+
+
+    /*
+      Create falling hearts/confetti
+    */
+    function createConfetti() {
+
+      const emojis = ["🤍", "♡", "🕊️", "🌸", "✨", "💐"];
+
+      for (let i = 0; i < 80; i++) {
+
+        const piece = document.createElement("div");
+
+        piece.classList.add("confetti");
+
+        piece.innerText =
+          emojis[Math.floor(Math.random() * emojis.length)];
+
+        piece.style.left =
+          Math.random() * 100 + "vw";
+
+        piece.style.animationDuration =
+          (2 + Math.random() * 3) + "s";
+
+        piece.style.animationDelay =
+          Math.random() * 1.5 + "s";
+
+        piece.style.fontSize =
+          (12 + Math.random() * 20) + "px";
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => {
+          piece.remove();
+        }, 5000);
+      }
+    }
+
+  </script>
+
+</body>
+</html>
